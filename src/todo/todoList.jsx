@@ -1,13 +1,16 @@
 import React from 'react'
 import IconBtn from '../template/IconBtn'
 import './template.css'
+import {connect} from 'react-redux'
 
-export default function TodoList(props) {
+const TodoList = props => {
+  
   function converterData(dataString){
     const dataTarefa = new Date(dataString)
     const dataFormatada = dataTarefa.toLocaleDateString('pt-BR'); 
     return dataFormatada
   }
+
   const renderRows = () => {
     const list = props.list || []
     return list.map(todo => (
@@ -47,3 +50,6 @@ export default function TodoList(props) {
 
   )
 }
+
+const mapStateToProps = state => ({list: state.todo.list})
+export default connect(mapStateToProps)(TodoList)
