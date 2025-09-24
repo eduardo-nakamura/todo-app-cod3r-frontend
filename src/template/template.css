@@ -1,0 +1,25 @@
+.flex-table {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.flex-row {
+    display: flex;
+    width: 100%;
+}
+
+.flex-cell {
+    flex: 1; /* Distribute space equally */
+    padding: 8px;
+    border: 1px solid #dee2e6; /* Bootstrap border color */
+}
+
+.flex-header {
+    background-color: #f8f9fa; /* Light background for headers */
+    font-weight: bold;
+}
+
+.flex-table-responsive {
+    overflow-x: auto; /* Enable horizontal scrolling */
+}
