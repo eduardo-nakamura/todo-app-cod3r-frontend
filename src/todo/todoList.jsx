@@ -2,6 +2,8 @@ import React from 'react'
 import IconBtn from '../template/IconBtn'
 import './template.css'
 import {connect} from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { markAsDone,markAsPending } from './todoActions'
 
 const TodoList = props => {
   
@@ -22,8 +24,8 @@ const TodoList = props => {
           <p >{converterData(todo.createdAt)}</p>
         </td>
         <td>
-          <IconBtn style={!todo.done ? 'success' : 'light'} icon='check' onClick={() => props.handleCheck(todo)} hide={todo.done} />
-          <IconBtn style={todo.done ? 'warning' : 'light'} icon='undo' onClick={() => props.handleUncheck(todo)} hide={!todo.done} />
+          <IconBtn style={!todo.done ? 'success' : 'light'} icon='check' onClick={() => props.markAsDone(todo)} hide={todo.done} />
+          <IconBtn style={todo.done ? 'warning' : 'light'} icon='undo' onClick={() => props.markAsPending(todo)} hide={!todo.done} />
           <IconBtn style={todo.done ? 'danger' : 'light'} icon='trash-o' onClick={() => props.handleRemove(todo)} hide={!todo.done} />
         </td>
       </tr>
@@ -52,4 +54,6 @@ const TodoList = props => {
 }
 
 const mapStateToProps = state => ({list: state.todo.list})
-export default connect(mapStateToProps)(TodoList)
+const mapDispatchToProps = dispatch => bindActionCreators({ markAsDone,markAsPending }, dispatch)
+
+export default connect(mapStateToProps,mapDispatchToProps)(TodoList)
